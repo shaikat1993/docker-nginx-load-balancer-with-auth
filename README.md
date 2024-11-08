@@ -82,20 +82,30 @@ Stopping the Services
 To stop all services, press the STOP button on the web interface. This will trigger the docker compose down command, which stops and removes all running containers.
 ![output3](images/3.png)
 
-### 5. Additional Information
+### 5. To Stop the service completely:
+```bash
+ctrl+c
+```
+
+### 6. To remove the docker files:
+```bash
+docker compose down
+```
+
+### 7. Additional Information
   - The system uses round-robin load balancing for Service 1 through the NGINX gateway.
   - Basic authentication is implemented using credentials stored in a login.txt file.
   - A REQUEST button to send a request to Service 1.
   - A STOP button to stop all services.
 
-### 5. Troubleshooting
+### 8. Troubleshooting
 If the web interface does not load, ensure that the containers are running by checking the output of:
 
 ```bash
 docker ps
 ```
-### 6. Need future improvement
+### 9. Need future improvement
 - Currently its showing in the terminal that all the containers have been removed but still the service is running. Need to improve the funcationility more efficiently.
 
-### 6. License:
+### 10. License:
 This project is licensed under the MIT License - see the LICENSE file for details.
