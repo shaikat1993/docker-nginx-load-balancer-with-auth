@@ -1,0 +1,46 @@
+LLM Usage Report
+
+Introduction
+In order to learn the basics about DevOps, I needed language models: Perplexity and ChatGPT. This report outlines what tools I have used, for what reasons, what their contribution is, and what the limitations have been.
+
+Tools Used
+- Perplexity
+- ChatGPT
+
+Motivation for Using LLMs
+- The motivation for using language models was: 
+having access to their large knowledge base for quick, short explanations regarding complex topics. DevOps incorporates a broad category of practices and tools in which LLMs can be applied to access a variety of information efficiently. 
+
+How and Why LLMs Helped
+- Comprehensive Explanations: 
+  LLMs provided elaborate explanations for concepts in DevOps-for example, continuous integration, continuous deployment, and infrastructure as code.
+  It helped me form a basic understanding of the systems.
+
+- Ease of Information Access:
+  Being able to ask pointblank questions and getting immediate answers saved me a lot of time doubting and exploring new topics without having too much manual research.
+
+- Examples and Use Cases:
+  LLMs gave me examples of practical use cases that helped in understanding how DevOps practices are applied right through the real-world scenarios.
+
+- Recommended Resources:
+  They also suggested other sources and documentation for further elaboration, which helped extend knowledge beyond what was provided by the initial questions.
+
+Mistakes Made by LLMs
+- Occasional Inaccuracies: 
+  The information given on occasions was a bit outdated or off the exact mark; these terminologies had to be cross-checked from other sources.
+
+- Lack of Contextual Understanding: 
+  Sometimes, context-specific details were lacking in the response, and that itself is important to understand certain subtleties in the DevOps culture.
+
+Limitations of LLMs
+- Depth of Technical Detail:
+  While LLMs are great for overviews, sometimes they lack in-depth technical details necessary at higher levels of understanding.
+
+- Interactive Learning: 
+  LLMs cannot replace the interactive, hands-on experience which is really important for mastering the DevOps tooling and practices.
+
+- Complex Problem Solving: 
+  For multi-step complex problems, LLMs may not always give a path to a comprehensive solution and require additional research and problem-solving skills.
+
+Conclusion
+In general, the application of Perplexity and ChatGPT has really underscored my understanding of DevOps through easily accessible and varied information. Although there is some limitation in using these applications, they were critical to establishing a core base and also to conducting further explorations in the field.

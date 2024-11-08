@@ -1,0 +1,32 @@
+While doing this exercise I understand some basic things like how docker containers and the Host system actually work together.
+Here are some key insights:
+
+1. Shared Kernel: 
+    All containers run on the same host operating system Kernel. 
+    This means that while they operate differently, 
+    they share the same kernel's functionalities. 
+    Therefore they can interact with the host's system resources.
+
+2. Resource Management:
+    One can configure the containers to use only a portion of the CPU or memory 
+    so that it doesn't utilize it fully. This will help in keeping 
+    the host running without any glitches and with high efficiency.
+
+3. Networking: 
+    By default, each container gets its own unique IP address and 
+    therefore cannot, by default, talk directly to other containers or 
+    the network of the host. Docker has flexible networking options, which, 
+    when needed, allow the communication between containers. 
+    This is especially useful in microservices-like setups when 
+    different services need to talk among themselves.
+
+4. Isolated Filesystem:
+    Each container runs in its own filesystem, isolated from the host and 
+    other containers. This makes for a clean environment where 
+    the application can be executed and not affect the host system or 
+    any other container operating on the system.
+
+So in my view, Docker containers introduce an intelligent way to 
+run applications in isolated environments while tapping into the strengths of the host machine. 
+Basically, this blend of separation yet shared resources makes containers efficient and versatile, 
+hence giving a powerful base in modern application development. 
