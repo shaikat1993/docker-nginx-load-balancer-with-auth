@@ -26,8 +26,8 @@ This project demonstrates the integration of an NGINX gateway and a web interfac
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/shaikat1993/docker-nginx-load-balancer-with-auth.git
 cd <your_project_directory>
+git clone https://github.com/shaikat1993/docker-nginx-load-balancer-with-auth.git
 ```
 
 ### 2. Build and Start All Services To build the images and start all services, run the following command :
