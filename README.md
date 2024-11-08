@@ -56,8 +56,10 @@ http://localhost:8198
 
 ### 3. You will be prompted to log in with the following credentials:
 ![output1](images/1.png)
-- You will found it in login.txt file 
+- You will found the login credentials in the login.txt file 
+
 ![output4](images/4.png)
+
 ```bash
 Username: mdsadidurrahman
 Password: 12345
