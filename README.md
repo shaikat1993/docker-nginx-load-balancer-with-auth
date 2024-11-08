@@ -26,7 +26,7 @@ This project demonstrates the integration of an NGINX gateway and a web interfac
 ### 1. Clone the Repository
 
 ```bash
-git clone <your_git_repo_url>
+git clone https://github.com/shaikat1993/docker-nginx-load-balancer-with-auth.git
 cd <your_project_directory>
 ```
 
@@ -55,7 +55,9 @@ http://localhost:8198
 
 
 ### 3. You will be prompted to log in with the following credentials:
-
+![output1](images/1.png)
+- You will found it in login.txt file 
+![output4](images/4.png)
 ```bash
 Username: mdsadidurrahman
 Password: 12345
@@ -67,6 +69,7 @@ Password: 12345
   - A text area showing the response from Service 1.
   - A REQUEST button to send a request to Service 1.
   - A STOP button to stop all services.
+![output2](images/2.png)  
 
 - **Stopping the Services:** To stop all services, press the STOP button on the web interface. This will trigger the docker compose down command, which stops and removes all running containers.
 
@@ -75,6 +78,7 @@ A REQUEST button to send a request to Service 1.
 A STOP button to stop all services.
 Stopping the Services
 To stop all services, press the STOP button on the web interface. This will trigger the docker compose down command, which stops and removes all running containers.
+![output3](images/3.png)
 
 ### 5. Additional Information
   - The system uses round-robin load balancing for Service 1 through the NGINX gateway.
