@@ -1,82 +1,91 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import os
 import subprocess
 import logging
-import os
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-# Method to run a Bash script
 def run_bash_script(script_path):
+    """Run a bash script and return True if successful."""
     try:
-        logging.debug(f"Running bash script at {script_path}")
-        
-        # Run the Bash script
-        result = subprocess.run([script_path], capture_output=True, text=True, check=True)
-        
-        # Log the output
-        logging.debug(f"Script output: {result.stdout}")
-        logging.debug(f"Script error: {result.stderr}")
+        if not os.path.exists(script_path):
+            logging.error(f"Script not found: {script_path}")
+            return False
+            
+        result = subprocess.run(
+            ["bash", script_path],
+            capture_output=True,
+            text=True
+        )
         
         if result.returncode == 0:
+            logging.info("Bash script executed successfully")
             return True
         else:
-            logging.error(f"Script failed with error: {result.stderr}")
+            logging.error(f"Bash script failed: {result.stderr}")
             return False
-    except subprocess.CalledProcessError as e:
-        logging.error(f"Error executing the bash script: {e}")
-        return False
+            
     except Exception as e:
-        logging.error(f"Unexpected error: {e}")
+        logging.error(f"Error running bash script: {str(e)}")
         return False
 
-# Method to run Docker Compose command directly
 def run_docker_compose_command(command):
+    """Run a docker-compose command and return True if successful."""
     try:
-        logging.debug(f"Running Docker Compose command: {command}")
-        
-        # Run the docker-compose command
         result = subprocess.run(
             command,
             capture_output=True,
             text=True,
-            check=True,
-            cwd=os.getcwd()  # Ensure we're in the correct directory where docker-compose.yml is located
+            cwd="/app"  # Make sure we're in the right directory
         )
         
-        # Log the output
-        logging.debug(f"Docker Compose output: {result.stdout}")
-        logging.debug(f"Docker Compose error: {result.stderr}")
-        
         if result.returncode == 0:
+            logging.info("Docker compose command executed successfully")
             return True
         else:
-            logging.error(f"Docker Compose failed with error: {result.stderr}")
+            logging.error(f"Docker compose command failed: {result.stderr}")
             return False
-    except subprocess.CalledProcessError as e:
-        logging.error(f"Error executing Docker Compose command: {e}")
-        return False
+            
     except Exception as e:
-        logging.error(f"Unexpected error: {e}")
+        logging.error(f"Error running docker compose command: {str(e)}")
         return False
 
 @app.route("/api/stop", methods=["POST"])
 def stop_all_services():
-    script_path = "/app/stop_service/stop_containers.sh"  # Path to your Bash script
-    
-    # Try running the Bash script first
-    if run_bash_script(script_path):
-        return jsonify(message="All services stopped successfully using Bash script."), 200
-    
-    # If the Bash script fails, run Docker Compose down as a fallback
-    logging.error("Bash script failed, attempting to run Docker Compose command...")
-    
-    command = ["docker-compose", "down"]  # The Docker Compose command to stop all services
-    
-    if run_docker_compose_command(command):
-        return jsonify(message="All services stopped successfully using Docker Compose."), 200
-    else:
-        return jsonify(message="Failed to stop services with both methods."), 500
+    try:
+        logging.debug("Attempting to stop all services...")
+        
+        # Stop all containers in the compose project
+        stop_cmd = subprocess.run(
+            ["docker", "compose", "-f", "/app/docker-compose.yaml", "down"],
+            capture_output=True,
+            text=True,
+            cwd="/app"
+        )
+        
+        if stop_cmd.returncode == 0:
+            logging.info("Successfully stopped all services")
+            return jsonify({"message": "All services stopped successfully"}), 200
+        else:
+            # If docker compose fails, try stopping containers directly
+            kill_cmd = subprocess.run(
+                ["sh", "-c", "docker kill $(docker ps -q)"],
+                capture_output=True,
+                text=True
+            )
+            
+            if kill_cmd.returncode == 0:
+                logging.info("Successfully stopped all containers")
+                return jsonify({"message": "All services stopped successfully"}), 200
+            else:
+                error = f"Failed to stop services: {stop_cmd.stderr}, Kill error: {kill_cmd.stderr}"
+                logging.error(error)
+                return jsonify({"message": error}), 500
+                
+    except Exception as e:
+        logging.error(f"Error stopping services: {str(e)}")
+        return jsonify({"message": f"Error stopping services: {str(e)}"}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8210)

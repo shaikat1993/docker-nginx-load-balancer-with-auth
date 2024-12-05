@@ -1,8 +1,13 @@
-CONTAINER ID   IMAGE                                     COMMAND                  CREATED       STATUS       PORTS      NAMES
-11c48f539151   docker-compose-exercise-service2:latest   "docker-entrypoint.s…"   2 hours ago   Up 2 hours   8200/tcp   boring_hopper
-3005be2533f2   docker-compose-exercise-service1:latest   "python app.py"          2 hours ago   Up 2 hours   8199/tcp   quirky_margulis
-NETWORK ID     NAME                     DRIVER    SCOPE
-944970a9610e   bridge                   bridge    local
-ed8b46ffa765   host                     host      local
-244751e4957f   none                     null      local
-e3b744c0a49b   web2assignment_backend   bridge    local
+CONTAINER ID   IMAGE                                                     COMMAND                  CREATED          STATUS          PORTS                            NAMES
+ebc34a2011c6   docker-nginx-load-balancer-with-auth-service1-instance1   "python app.py"          27 seconds ago   Up 14 seconds                                    docker-nginx-load-balancer-with-auth-service1-instance1-1
+4a71903dae9c   docker-nginx-load-balancer-with-auth-service1-instance2   "python app.py"          27 seconds ago   Up 14 seconds                                    docker-nginx-load-balancer-with-auth-service1-instance2-1
+15c539cca0c8   docker-nginx-load-balancer-with-auth-service1-instance3   "python app.py"          27 seconds ago   Up 14 seconds                                    docker-nginx-load-balancer-with-auth-service1-instance3-1
+a449f08f5249   docker-nginx-load-balancer-with-auth-stop-service         "python /app/stop_se…"   28 seconds ago   Up 14 seconds   0.0.0.0:8210->8210/tcp           stop-service
+f0be14c5200c   docker-nginx-load-balancer-with-auth-nginx                "/docker-entrypoint.…"   6 hours ago      Up 10 seconds   80/tcp, 0.0.0.0:8198->8198/tcp   docker-nginx-load-balancer-with-auth-nginx-1
+0510ea296a41   docker-nginx-load-balancer-with-auth-service2             "docker-entrypoint.s…"   6 hours ago      Up 4 minutes    8200/tcp                         docker-nginx-load-balancer-with-auth-service2-1
+
+NETWORK ID     NAME                                               DRIVER    SCOPE
+543d7205eed7   bridge                                             bridge    local
+4a16844bdf40   docker-nginx-load-balancer-with-auth_app_network   bridge    local
+ed8b46ffa765   host                                               host      local
+244751e4957f   none                                               null      local
